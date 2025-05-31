@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import HomeView from './views/HomeView.vue'
-
-const showSplash = ref(true)
-
-const onSplashFinished = () => {
-  showSplash.value = false // Hide the splash screen when it finishes
-}
+import { RouterLink, RouterView } from 'vue-router'
+import HeaderNav from './components/HeaderNav.vue';
 </script>
 
 <template>
-  <header><HomeView @finish="onSplashFinished" v-if="showSplash" /></header>
+  <header>
+    <HeaderNav />
+  </header>
+
+  <RouterView />
 </template>
 
 <style scoped>
@@ -49,30 +47,4 @@ nav a:first-of-type {
   border: 0;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
