@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HeaderNav from './components/HeaderNav.vue';
+import { RouterView } from 'vue-router'
+import HeaderNav from './components/HeaderNav.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import HeaderNav from './components/HeaderNav.vue';
   </header>
 
   <RouterView />
+  <!-- <Footer /> -->
 </template>
 
 <style scoped>
@@ -46,5 +48,4 @@ nav a {
 nav a:first-of-type {
   border: 0;
 }
-
 </style>
