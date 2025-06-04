@@ -1,202 +1,205 @@
-<!-- Updated Services.vue -->
 <template>
-  <div class="services">
-    <section class="hero-image">
-      <div class="hero-content">
-        <h1 class="hero-heading">
-          your business is <span class="emphasized-web">great</span>, <br />
-          your <span class="emphasized-word">website</span> should
-          <span class="emphasized-word">prove</span> it
-        </h1>
-        <p class="hero-body">
-          I design strategic, conversion-focused websites for service-based small businesses ready
-          to show up online with confidence. Through custom design, SEO, and digital strategy, I
-          help turn your site into your hardest-working asset.
-        </p>
-      </div>
-    </section>
-  </div>
-
-  <!-- Wave Divider 1 -->
-  <div class="section-divider double-wave">
-    <svg
-      viewBox="0 0 1440 200"
-      preserveAspectRatio="none"
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-    >
-      <defs>
-        <linearGradient id="fade-to-bg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="var(--vt-c-indigo)" />
-          <stop offset="100%" stop-color="white" stop-opacity="1" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M0,40 C360,160 1080,0 1440,100 L1440,200 L0,200 Z"
-        fill="var(--vt-c-purple)"
-        opacity="0.3"
-      />
-      <path d="M0,60 C480,180 960,20 1440,120 L1440,200 L0,200 Z" fill="url(#fade-to-bg)" />
-    </svg>
-  </div>
-
-  <!-- Brand Strategy Section -->
-  <section class="service-block">
-    <div class="service-wrapper">
-      <div class="service-image">
-        <img src="/src/assets/images/brand-strategy.jpeg" alt="Brand strategy" />
-      </div>
-      <div class="service-text">
-        <div class="service-header">
-          <span class="service-number">No. 1</span>
-          <h2 class="service-title">Brand Strategy</h2>
+  <div class="background">
+    <div class="services">
+      <section class="hero-image">
+        <div class="hero-content">
+          <h1 class="hero-heading">
+            your business is <span class="emphasized-web">great</span>, <br />
+            your <span class="emphasized-word">website</span> should
+            <span class="emphasized-word">prove</span> it
+          </h1>
+          <p class="hero-body">
+            I design strategic, conversion-focused websites for service-based small businesses ready
+            to show up online with <span class="emphasized-word">confidence</span>. Through custom
+            design, SEO, and digital strategy, I help turn your site into your hardest-working
+            asset.
+          </p>
         </div>
-        <p class="service-description">
-          A strong brand strategy builds a clear, consistent identity that sets you apart and
-          connects with your audience. It defines your mission, values, and voice—aligning visuals
-          and messaging to create trust, recognition, and long-term growth.
-        </p>
-        <div class="accordion" @click="toggleAccordion">
-          <div class="accordion-header">
-            <span>{{ isOpen ? '–' : '+' }}</span>
-            <h3>What’s Included</h3>
-          </div>
-          <transition name="accordion">
-            <div v-show="isOpen" class="accordion-content">
-              <p class="accordion-intro">Depending on the package, the deliverables can include:</p>
-              <ul class="accordion-list">
-                <li>Comprehensive Brand Strategy + Positioning</li>
-                <li>Competitor Analysis</li>
-                <li>Strategy-Based Brand Vision + Keywords</li>
-                <li>Mood Board</li>
-                <li><strong>1</strong> Primary Logo</li>
-                <li><strong>1</strong> Secondary Logo</li>
-                <li>Color Palette</li>
-                <li>Typography Selections</li>
-                <li>In-Depth Creative Direction Concepts + Guide</li>
-                <li><strong>2</strong> Rounds of Edits</li>
-                <li>Onboarding Kit with Questionnaire</li>
-              </ul>
-            </div>
-          </transition>
-        </div>
-      </div>
+      </section>
     </div>
 
-    <!-- Between A La Carte and the next section -->
-    <div class="section-divider curve-up">
-      <svg viewBox="0 0 1440 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Wave Divider 1 -->
+    <div class="section-divider double-wave">
+      <svg
+        viewBox="0 0 1440 200"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        height="100%"
+      >
         <defs>
-          <linearGradient id="fade-curve" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id="fade-to-bg" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="var(--vt-c-indigo)" />
-            <stop offset="100%" stop-color="var(--color-background)" stop-opacity="1" />
+            <stop offset="100%" stop-color="#e0c3fc" stop-opacity="0" />
           </linearGradient>
         </defs>
         <path
-          d="M0,100 C200,0 1240,200 1440,100 L1440,150 L0,150 Z"
-          fill="var(--vt-c-text-light-2)"
-          opacity="0.2"
-        />
-        <path d="M0,120 C200,20 1240,180 1440,120 L1440,150 L0,150 Z" fill="url(#fade-curve)" />
-      </svg>
-    </div>
-    <!-- Web Design Section -->
-    <div class="service-wrapper flipped">
-      <div class="service-text">
-        <div class="service-header">
-          <span class="service-number">No. 2</span>
-          <h2 class="service-title">Web Design</h2>
-        </div>
-        <p class="service-description">
-          Custom web design tailored to your brand and business goals. I focus on creating sites
-          that are not only visually compelling, but optimized for conversions, mobile performance,
-          and growth – so your site works as hard as you do.
-        </p>
-        <div class="accordion" @click="toggleAccordion2">
-          <div class="accordion-header">
-            <span>{{ isOpen2 ? '–' : '+' }}</span>
-            <h3>What’s Included</h3>
-          </div>
-          <transition name="accordion">
-            <div v-show="isOpen2" class="accordion-content">
-              <p class="accordion-intro">Depending on the scope, your site may include:</p>
-              <ul class="accordion-list">
-                <li>Responsive Custom Website (1–5+ pages)</li>
-                <li>Conversion-Focused Layout & Structure</li>
-                <li>Mobile & SEO Optimization</li>
-                <li>Social Media Integration</li>
-                <li>SEO Optimization</li>
-                <li>1:1 Website Training & Support</li>
-                <li>Launch Checklist</li>
-                <li><strong>2</strong> Rounds of Edits</li>
-              </ul>
-            </div>
-          </transition>
-        </div>
-      </div>
-      <div class="service-image">
-        <img src="/src/assets/images/web-design.jpeg" alt="Web design" />
-      </div>
-    </div>
-
-    <div class="section-divider angled-wave">
-      <svg viewBox="0 0 1440 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="fade-angle" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="var(--vt-c-indigo)" />
-            <stop offset="100%" stop-color="var(--color-background)" stop-opacity="1" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M0,20 C150,80 1290,80 1440,20 L1440,150 L0,150 Z"
+          d="M0,40 C360,160 1080,0 1440,100 L1440,200 L0,200 Z"
           fill="var(--vt-c-purple)"
           opacity="0.3"
         />
-        <path d="M0,40 C200,100 1240,100 1440,40 L1440,150 L0,150 Z" fill="url(#fade-angle)" />
+        <path d="M0,60 C480,180 960,20 1440,120 L1440,200 L0,200 Z" fill="url(#fade-to-bg)" />
       </svg>
     </div>
 
-    <!-- A La Carte Section -->
-    <div class="service-wrapper">
-      <div class="service-image">
-        <img src="/src/assets/images/Donati Designs.png" alt="A La Carte Services" />
-      </div>
-      <div class="service-text">
-        <div class="service-header">
-          <span class="service-number">No. 3</span>
-          <h2 class="service-title">A La Carte</h2>
+    <!-- Brand Strategy Section -->
+    <section>
+      <div class="service-wrapper" id="brand-strategy">
+        <div class="service-image">
+          <img src="/src/assets/images/brand-strategy.jpeg" alt="Brand strategy" />
         </div>
-        <p class="service-description">
-          Need just one piece of the puzzle? My à la carte services are perfect for businesses
-          looking to elevate a specific touchpoint – without committing to a full package. Choose
-          exactly what you need, when you need it.
-        </p>
-        <div class="accordion" @click="toggleAccordion3">
-          <div class="accordion-header">
-            <span>{{ isOpen3 ? '–' : '+' }}</span>
-            <h3>What’s Included</h3>
+        <div class="service-text">
+          <div class="service-header">
+            <span class="service-number">No. 1</span>
+            <h2 class="service-title">Brand Strategy</h2>
           </div>
-          <transition name="accordion">
-            <div v-show="isOpen3" class="accordion-content">
-              <p class="accordion-intro">A La Carte options may include:</p>
-              <ul class="accordion-list">
-                <li>One-Pager Website</li>
-                <li>Sales or Landing Page</li>
-                <li>Website Audit + Feedback Report</li>
-                <li>CMS or CRM implementations</li>
-                <li>Analytics</li>
-              </ul>
+          <p class="service-description">
+            A strong brand strategy builds a clear, consistent identity that sets you apart and
+            connects with your audience. It defines your mission, values, and voice-aligning visuals
+            and messaging to create trust, recognition, and long-term growth.
+          </p>
+          <div class="accordion" @click="toggleAccordion">
+            <div class="accordion-header">
+              <span>{{ isOpen ? '–' : '+' }}</span>
+              <h3>What’s Included</h3>
             </div>
-          </transition>
+            <transition name="accordion">
+              <div v-show="isOpen" class="accordion-content">
+                <p class="accordion-intro">
+                  Depending on the package, the deliverables can include:
+                </p>
+                <ul class="accordion-list">
+                  <li>Comprehensive Brand Strategy</li>
+                  <li>Brand Positioning</li>
+                  <li>Strategy-Based Brand Vision + Keywords</li>
+                  <li><strong>1</strong> Primary Logo</li>
+                  <li><strong>1</strong> Secondary Logo</li>
+                  <li>Color Palette</li>
+                  <li>Typography Selections</li>
+                  <li><strong>2</strong> Rounds of Edits</li>
+                </ul>
+              </div>
+            </transition>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+
+      <!-- Between A La Carte and the next section -->
+      <div class="section-divider curve-up">
+        <svg viewBox="0 0 1440 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="fade-curve" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--vt-c-indigo)" />
+              <stop offset="100%" stop-color="#e0c3fc" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,100 C200,0 1240,200 1440,100 L1440,150 L0,150 Z"
+            fill="var(--vt-c-text-light-2)"
+            opacity="0.2"
+          />
+          <path d="M0,120 C200,20 1240,180 1440,120 L1440,150 L0,150 Z" fill="url(#fade-curve)" />
+        </svg>
+      </div>
+      <!-- Web Design Section -->
+      <div class="service-wrapper flipped">
+        <div class="service-text">
+          <div class="service-header">
+            <span class="service-number">No. 2</span>
+            <h2 class="service-title" id="web-design">Web Design</h2>
+          </div>
+          <p class="service-description">
+            Custom web design tailored to your brand and business goals. I focus on creating sites
+            that are not only visually compelling, but optimized for conversions, mobile
+            performance, and growth - so your site works as hard as you do.
+          </p>
+          <div class="accordion" @click="toggleAccordion2">
+            <div class="accordion-header">
+              <span>{{ isOpen2 ? '–' : '+' }}</span>
+              <h3>What’s Included</h3>
+            </div>
+            <transition name="accordion">
+              <div v-show="isOpen2" class="accordion-content">
+                <p class="accordion-intro">Depending on the scope, your site may include:</p>
+                <ul class="accordion-list">
+                  <li>Responsive Custom Website</li>
+                  <li>CRM and CMS integrations</li>
+                  <li>Analytic Tracking</li>
+                  <li>Mobile & SEO Optimization</li>
+                  <li>Social Media Integration</li>
+                  <li>SEO Optimization</li>
+                  <li>1:1 Website Training & Support</li>
+                  <li>Launch Checklist</li>
+                  <li><strong>2</strong> Rounds of Edits</li>
+                </ul>
+              </div>
+            </transition>
+          </div>
+        </div>
+        <div class="service-image">
+          <img src="/src/assets/images/web-design.jpeg" alt="Web design" />
+        </div>
+      </div>
+
+      <div class="section-divider angled-wave">
+        <svg viewBox="0 0 1440 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="fade-angle" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--vt-c-indigo)" />
+              <stop offset="100%" stop-color="#e0c3fc" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,20 C150,80 1290,80 1440,20 L1440,150 L0,150 Z"
+            fill="var(--vt-c-purple)"
+            opacity="0.3"
+          />
+          <path d="M0,40 C200,100 1240,100 1440,40 L1440,150 L0,150 Z" fill="url(#fade-angle)" />
+        </svg>
+      </div>
+
+      <!-- A La Carte Section -->
+      <div class="service-wrapper">
+        <div class="service-image">
+          <img src="/src/assets/images/Donati Designs.png" alt="A La Carte Services" />
+        </div>
+        <div class="service-text">
+          <div class="service-header">
+            <span class="service-number">No. 3</span>
+            <h2 class="service-title" id="custom-services">A La Carte</h2>
+          </div>
+          <p class="service-description">
+            Need just one piece of the puzzle? My à la carte services are perfect for businesses
+            looking to elevate a specific touchpoint - without committing to a full package. Choose
+            exactly what you need, when you need it.
+          </p>
+          <div class="accordion" @click="toggleAccordion3">
+            <div class="accordion-header">
+              <span>{{ isOpen3 ? '–' : '+' }}</span>
+              <h3>What’s Included</h3>
+            </div>
+            <transition name="accordion">
+              <div v-show="isOpen3" class="accordion-content">
+                <p class="accordion-intro">A La Carte options may include:</p>
+                <ul class="accordion-list">
+                  <li>One-Pager Website</li>
+                  <li>Sales or Landing Page</li>
+                  <li>Website Audit + Feedback Report</li>
+                  <li>CMS or CRM implementations</li>
+                  <li>Analytics</li>
+                </ul>
+              </div>
+            </transition>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, onMounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 
 const isOpen = ref(false)
 const isOpen2 = ref(false)
@@ -211,9 +214,37 @@ function toggleAccordion2() {
 function toggleAccordion3() {
   isOpen3.value = !isOpen3.value
 }
+
+// ⬇️ Smooth scroll to hash
+const route = useRoute()
+
+function scrollToHash(hash) {
+  if (hash) {
+    nextTick(() => {
+      const el = document.querySelector(hash)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
+      }
+    })
+  }
+}
+
+onMounted(() => {
+  scrollToHash(route.hash)
+})
+
+watch(
+  () => route.hash,
+  (newHash) => {
+    scrollToHash(newHash)
+  }
+)
 </script>
 
 <style scoped>
+.background {
+  background: linear-gradient(to left, #e0c3fc, #8ec5fc);
+}
 .services {
   display: flex;
   flex-direction: column;
@@ -258,7 +289,7 @@ function toggleAccordion3() {
 
 .hero-image {
   width: 100%;
-  height: 80vh;
+  height: 60vh;
   /* background-color: var(--vt-c-text-light-2); muted olive green */
   background-size: cover;
   background-position: center;
@@ -291,9 +322,7 @@ function toggleAccordion3() {
   color: var(--vt-c-indigo); /* deep purple highlight */
 }
 .emphasized-web {
-  font-weight: 700;
   font-style: italic;
-  color: var(--vt-c-text-light-1); /* deep purple highlight */
 }
 
 .hero-body {
@@ -303,11 +332,6 @@ function toggleAccordion3() {
   color: black;
   max-width: 60ch;
   margin: 0 auto;
-}
-/* Service Section Styling */
-.service-block {
-  /* padding: 100px 20px; */
-  background-color: var(--color-background);
 }
 
 .service-wrapper {
@@ -460,5 +484,36 @@ function toggleAccordion3() {
 .accordion-list li strong {
   color: var(--vt-c-indigo);
   font-weight: 600;
+}
+
+/* Responsive padding for small screens */
+@media (max-width: 768px) {
+  .service-wrapper {
+    padding: 0 20px;
+  }
+
+  .hero-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .accordion-content,
+  .accordion-list {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .service-image,
+  .service-text {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .hero-heading {
+    font-size: 2rem;
+  }
+
+  .hero-body {
+    font-size: 1rem;
+  }
 }
 </style>

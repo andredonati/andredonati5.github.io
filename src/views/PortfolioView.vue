@@ -8,7 +8,6 @@
 
       <!-- Right Text + Line -->
       <div class="hero-text-wrapper">
-        <!-- Vertical Line -->
         <div class="vertical-line"></div>
 
         <!-- Text Content -->
@@ -16,19 +15,17 @@
           <p class="hero-intro">Hi there</p>
           <h1 class="hero-name">I'm Andrea</h1>
           <p class="hero-bio">
-            A <span class="highlight-bold">software engineer</span> who builds
-            <span class="highlight-italic">functional</span> (and
-            <span class="highlight-italic">beautiful</span>) digital experiences.<br />
-            My journey started in <span class="highlight-color">product</span>, but I shifted to
-            <span class="highlight-bold">consulting</span> to work more directly with clients - and
-            I’ve never looked back.<br />
-            I’ve led development teams for
-            <span class="highlight-color">Fortune 500 companies</span>, but my true passion lies in
+            A software engineer who builds
+            <span class="highlight-italic">functional</span> and
+            <span class="highlight-italic">beautiful</span> digital experiences.<br />
+            My journey started in product, but I shifted to consulting to work more directly with
+            clients—and I’ve never looked back.<br />
+            I’ve led development teams for Fortune 500 companies, but my true passion lies in
             partnering with
             <span class="highlight-bold highlight-color">small and mid-sized businesses</span
             >.<br />
             Are you ready to bring your vision to life through
-            <span class="highlight-italic">thoughtful, strategic technology</span>.
+            <span class="highlight-italic">thoughtful, strategic technology</span>?
           </p>
           <RouterLink to="/contact" class="hero-button">Work with Me</RouterLink>
         </div>
@@ -39,103 +36,128 @@
 
 <style scoped>
 .hero-section {
+  background: linear-gradient(to right, #e0c3fc, #8ec5fc); /* soft purple to lavender blue */
+  padding: 80px 20px;
   display: flex;
   justify-content: center;
-  padding: 100px 20px;
-  background-color: var(--vt-c-text-light-2);
 }
 
 .hero-wrapper {
   display: flex;
+  flex-wrap: wrap;
   max-width: 1200px;
   width: 100%;
   gap: 60px;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 20px;
 }
 
 .hero-image {
-  flex: 1;
-  max-width: 600px;
+  flex: 1 1 400px;
+  max-width: 500px;
 }
 
 .hero-image img {
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Wrap line and text side by side */
 .hero-text-wrapper {
   display: flex;
-  align-items: stretch; /* ensures line stretches with content */
-  flex: 1;
-  max-width: 500px;
+  flex: 1 1 400px;
+  align-items: flex-start;
   gap: 30px;
 }
 
-/* Line beside text block */
 .vertical-line {
   width: 2px;
-  background-color: #111;
+  background: linear-gradient(to bottom, var(--vt-c-indigo), var(--vt-c-purple));
   flex-shrink: 0;
+  height: 100%;
+  opacity: 0.6;
 }
 
-/* Actual text block */
 .hero-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  font-family: Garamond, serif;
+  color: var(--vt-c-black);
 }
 
 .hero-intro {
-  font-size: 20px;
-  font-stretch: expanded;
-  color: #555;
-  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--vt-c-indigo);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
 .hero-name {
+  font-family: 'Brasika', Garamond, serif;
   font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #111;
+  color: var(--vt-c-purple);
+  margin-bottom: 1rem;
 }
 
 .hero-bio {
   font-size: 1.1rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 30px;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  max-width: 60ch;
+  color: var(--vt-c-black-soft);
 }
 
 .hero-button {
-  padding: 10px 20px;
-  background-color: #111;
+  background: var(--vt-c-indigo);
   color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
   text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  transition: background 0.3s;
 }
 
 .hero-button:hover {
-  background-color: #333;
+  background: var(--vt-c-purple);
 }
 
-/* Highlight styles */
 .highlight-bold {
   font-weight: 700;
-  color: #2a9d8f; /* teal accent */
+  color: var(--vt-c-purple);
 }
 
 .highlight-italic {
   font-style: italic;
-  color: #264653; /* dark blue accent */
+  font-weight: 700;
+  color: var(--vt-c-indigo);
 }
 
-.highlight-color {
-  color: #e76f51; /* warm coral accent */
+@media (max-width: 768px) {
+  .hero-wrapper {
+    flex-direction: column;
+    padding: 0 16px;
+  }
+
+  .hero-text-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .vertical-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, var(--vt-c-indigo), var(--vt-c-purple));
+  }
+
+  .hero-name {
+    font-size: 2rem;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+  }
 }
 </style>

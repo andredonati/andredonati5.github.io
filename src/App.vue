@@ -8,9 +8,10 @@ import Footer from './components/Footer.vue'
   <header>
     <HeaderNav />
   </header>
-
-  <RouterView />
-  <!-- <Footer /> -->
+  <transition name="fade" mode="out-in">
+    <RouterView />
+  </transition>
+  <Footer />
 </template>
 
 <style scoped>
@@ -47,5 +48,15 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.8s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

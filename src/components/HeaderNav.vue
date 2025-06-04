@@ -4,17 +4,13 @@
       <!-- Mobile Hamburger -->
       <button class="menu-button" @click="menuOpen = true">&#9776;</button>
 
-      <!-- Left Nav -->
-      <nav class="nav-links desktop-only nav-left">
-        <RouterLink to="/about" class="nav-link">About</RouterLink>
-        <RouterLink to="/portfolio" class="nav-link">Portfolio</RouterLink>
-      </nav>
-
-      <!-- Logo / Home Link -->
+      <!-- Centered Logo -->
       <RouterLink to="/" class="logo">Donati Designs</RouterLink>
 
-      <!-- Right Nav -->
-      <nav class="nav-links desktop-only nav-right">
+      <!-- Desktop Nav: All links grouped -->
+      <nav class="nav-links desktop-only">
+        <RouterLink to="/" class="nav-link">Home</RouterLink>
+        <RouterLink to="/about" class="nav-link">About</RouterLink>
         <RouterLink to="/services" class="nav-link">Services</RouterLink>
         <RouterLink to="/contact" class="nav-link">Work with Me</RouterLink>
       </nav>
@@ -34,6 +30,19 @@
         >
       </nav>
     </div>
+
+    <!-- Wave Divider -->
+    <div class="header-wave">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="header-fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--vt-c-indigo)" />
+            <stop offset="100%" stop-color="#8ec5fc" stop-opacity="0.9" />
+          </linearGradient>
+        </defs>
+        <path d="M0,40 C480,100 960,0 1440,60 L1440,100 L0,100 Z" fill="url(#header-fade)" />
+      </svg>
+    </div>
   </header>
 </template>
 
@@ -52,94 +61,73 @@ export default {
 
 <style scoped>
 .header-wrapper {
-  background-color: var(--vt-c-text-light-2);
+  background-color: var(--vt-c-indigo);
   width: 100%;
-  height: max-content;
-  padding-bottom: 10px;
-  position: relative;
+  position: fixed;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  z-index: 999;
 }
 
 .header-content {
-  max-width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
-  position: relative;
+  padding: 1rem 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  position: relative;
 }
 
-/* Logo / Home link */
 .logo {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
-  text-decoration: none;
   color: white;
-  white-space: nowrap;
+  text-decoration: none;
+  font-family: 'Brasika', serif;
 }
 
 .nav-links {
   display: flex;
   gap: 2rem;
-}
-
-/* Remove the margin pushes from left/right nav */
-.nav-left,
-.nav-right {
-  margin: 0;
+  align-items: center;
 }
 
 .nav-link {
-  color: white;
+  color: var(--vt-c-white);
   text-decoration: none;
   font-size: 1.1rem;
+  font-weight: 500;
   transition: color 0.2s;
 }
 
 .nav-link:hover {
-  color: #93c5fd;
+  text-underline-offset: 8px; /* adjust value as needed */
+  text-decoration: underline;
 }
 
-/* Mobile menu button */
 .menu-button {
-  position: absolute;
-  left: 0;
-  top: 0;
+  display: none;
   font-size: 1.5rem;
   background: none;
   border: none;
   color: white;
-  padding: 10px 20px;
   cursor: pointer;
-  display: none;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
 }
 
-/* Show only on mobile */
-@media (max-width: 768px) {
-  .menu-button {
-    display: block;
-  }
-
-  .desktop-only {
-    display: none;
-  }
-
-  .logo {
-    margin-left: 40px; /* room for menu button */
-  }
-}
-
-/* Slide-in Mobile Menu */
 .mobile-menu {
   position: fixed;
   top: 0;
-  left: -300px;
+  left: -100%;
   width: 250px;
   height: 100%;
-  background-color: var(--vt-c-text-light-2);
+  background-color: var(--vt-c-indigo);
   color: white;
-  padding: 20px;
+  padding: 2rem 1.5rem;
   transition: left 0.3s ease;
   z-index: 1000;
 }
@@ -149,17 +137,45 @@ export default {
 }
 
 .close-button {
-  font-size: 2rem;
   background: none;
   border: none;
+  font-size: 2rem;
   color: white;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .mobile-nav {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .logo {
+    margin: 0 auto;
+  }
+}
+
+.header-wave {
+  width: 100%;
+  line-height: 0;
+  position: relative;
+  margin-top: -5px;
+}
+
+.header-wave svg {
+  display: block;
+  width: 100%;
+  height: 100px;
 }
 </style>
