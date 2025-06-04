@@ -46,7 +46,10 @@
     <section>
       <div class="service-wrapper" id="brand-strategy">
         <div class="service-image">
-          <img src="/src/assets/images/brand-strategy.jpeg" alt="Brand strategy" />
+          <img
+            src="/src/assets/images/brand-strategy.jpeg"
+            alt="Moodboard showing branding strategy concept"
+          />
         </div>
         <div class="service-text">
           <div class="service-header">
@@ -137,7 +140,10 @@
           </div>
         </div>
         <div class="service-image">
-          <img src="/src/assets/images/web-design.jpeg" alt="Web design" />
+          <img
+            src="/src/assets/images/web-design.jpeg"
+            alt="Modern website design on desktop and mobile devices"
+          />
         </div>
       </div>
 
@@ -161,7 +167,10 @@
       <!-- A La Carte Section -->
       <div class="service-wrapper">
         <div class="service-image">
-          <img src="/src/assets/images/Donati Designs.png" alt="A La Carte Services" />
+          <img
+            src="/src/assets/images/Donati Designs.png"
+            alt="Donati Designs logo on brown background with laptop in view"
+          />
         </div>
         <div class="service-text">
           <div class="service-header">

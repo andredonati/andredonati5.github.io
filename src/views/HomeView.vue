@@ -34,7 +34,10 @@
       <h2>What I Offer</h2>
       <div class="services-grid">
         <div class="service-card">
-          <img src="/src/assets/images/brand-strategy.jpeg" alt="Brand Strategy" />
+          <img
+            src="/src/assets/images/brand-strategy.jpeg"
+            alt="Moodboard showing branding strategy concept"
+          />
           <h3>Brand Strategy</h3>
           <p>
             Align your business mission, messaging, and visuals into a cohesive brand experience
@@ -45,7 +48,10 @@
           </RouterLink>
         </div>
         <div class="service-card">
-          <img src="/src/assets/images/web-design.jpeg" alt="Web Design" />
+          <img
+            src="/src/assets/images/web-design.jpeg"
+            alt="Modern website design on desktop and mobile devices"
+          />
           <h3>Web Design</h3>
           <p>
             Strategic, custom web design focused on conversions, performance, and bringing your
@@ -56,7 +62,10 @@
           </RouterLink>
         </div>
         <div class="service-card">
-          <img src="/src/assets/images/Donati Designs.png" alt="A La Carte" />
+          <img
+            src="/src/assets/images/Donati Designs.png"
+            alt="Donati Designs logo on brown background with laptop in view"
+          />
           <h3>A La Carte</h3>
           <p>
             Need just one piece? Choose targeted services like SEO, analytics, or digital templates.
