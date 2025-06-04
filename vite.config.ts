@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/',
+  base: '/andredonati5.github.io/',
   plugins: [vue(), vueJsx(), vueDevTools()],
   resolve: {
     alias: {
