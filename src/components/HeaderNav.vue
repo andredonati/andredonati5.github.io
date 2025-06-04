@@ -21,9 +21,6 @@
       <button class="close-button" @click="menuOpen = false">&times;</button>
       <nav class="mobile-nav">
         <RouterLink to="/about" class="nav-link" @click="menuOpen = false">About</RouterLink>
-        <RouterLink to="/portfolio" class="nav-link" @click="menuOpen = false"
-          >Portfolio</RouterLink
-        >
         <RouterLink to="/services" class="nav-link" @click="menuOpen = false">Services</RouterLink>
         <RouterLink to="/contact" class="nav-link" @click="menuOpen = false"
           >Work with Me</RouterLink
