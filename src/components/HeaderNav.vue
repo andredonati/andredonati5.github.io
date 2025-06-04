@@ -4,26 +4,34 @@
       <!-- Mobile Hamburger -->
       <button class="menu-button" @click="menuOpen = true">&#9776;</button>
 
-      <!-- Logo/Title -->
-      <h1 class="logo">Donati Designs</h1>
+      <!-- Left Nav -->
+      <nav class="nav-links desktop-only nav-left">
+        <RouterLink to="/about" class="nav-link">About</RouterLink>
+        <RouterLink to="/portfolio" class="nav-link">Portfolio</RouterLink>
+      </nav>
 
-      <!-- Desktop Navigation -->
-      <nav class="nav-links desktop-only">
-        <template v-for="link in links" :key="link.path">
-          <RouterLink :to="link.path" class="nav-link">{{ link.label }}</RouterLink>
-        </template>
+      <!-- Logo / Home Link -->
+      <RouterLink to="/" class="logo">Donati Designs</RouterLink>
+
+      <!-- Right Nav -->
+      <nav class="nav-links desktop-only nav-right">
+        <RouterLink to="/services" class="nav-link">Services</RouterLink>
+        <RouterLink to="/contact" class="nav-link">Work with Me</RouterLink>
       </nav>
     </div>
 
-    <!-- Slide-in Mobile Menu -->
+    <!-- Mobile Menu -->
     <div class="mobile-menu" :class="{ open: menuOpen }">
       <button class="close-button" @click="menuOpen = false">&times;</button>
       <nav class="mobile-nav">
-        <template v-for="link in links" :key="link.path">
-          <RouterLink :to="link.path" class="nav-link" @click="menuOpen = false">
-            {{ link.label }}
-          </RouterLink>
-        </template>
+        <RouterLink to="/about" class="nav-link" @click="menuOpen = false">About</RouterLink>
+        <RouterLink to="/portfolio" class="nav-link" @click="menuOpen = false"
+          >Portfolio</RouterLink
+        >
+        <RouterLink to="/services" class="nav-link" @click="menuOpen = false">Services</RouterLink>
+        <RouterLink to="/contact" class="nav-link" @click="menuOpen = false"
+          >Work with Me</RouterLink
+        >
       </nav>
     </div>
   </header>
@@ -37,13 +45,6 @@ export default {
   data() {
     return {
       menuOpen: false,
-      links: [
-        { path: '/', label: 'Home' },
-        { path: '/about', label: 'About' },
-        { path: 'portfolio', label: 'Portfolio' },
-        { path: '/services', label: 'Services' },
-        { path: '/contact', label: 'Work with Me' },
-      ],
     }
   },
 }
@@ -52,7 +53,6 @@ export default {
 <style scoped>
 .header-wrapper {
   background-color: var(--vt-c-text-light-2);
-  color: white;
   width: 100%;
   height: max-content;
   padding-bottom: 10px;
@@ -64,26 +64,30 @@ export default {
   margin: 0 auto;
   text-align: center;
   position: relative;
-
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
+/* Logo / Home link */
 .logo {
   font-size: 2rem;
   font-weight: bold;
-  margin-top: 25px;
-  margin-bottom: 20px;
+  text-decoration: none;
+  color: white;
+  white-space: nowrap;
 }
 
-/* Desktop nav */
 .nav-links {
   display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-top: 10px;
+  gap: 2rem;
+}
+
+/* Remove the margin pushes from left/right nav */
+.nav-left,
+.nav-right {
+  margin: 0;
 }
 
 .nav-link {

@@ -208,6 +208,7 @@ button:hover {
   align-items: center;
   justify-content: center;
   overflow-x: hidden; /* prevent horizontal scroll */
+  /* background-color: var(--vt-c-text-light-2); */
 }
 @media (max-width: 768px) {
   .contact {
