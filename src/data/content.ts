@@ -121,21 +121,21 @@ export const capabilities: CapabilityEntry[] = [
   {
     number: '01',
     title: 'Full builds',
-    body: "A site or tool that doesn't exist yet, built end to end — architecture, frontend, backend, and the infrastructure to run it. The same ownership I bring to enterprise platforms, applied to your business.",
+    body: "A site or tool that doesn't exist yet, built end to end: architecture, frontend, backend, and the infrastructure to run it. The same ownership I bring to enterprise platforms, applied to your business.",
   },
   {
     number: '02',
     title: 'Technical audits & fixes',
-    body: "Something's broken, slow, or hard to maintain. I find the actual problem, explain it in plain language, and fix it — not a checklist of vague recommendations.",
+    body: "Something's broken, slow, or hard to maintain. I find the actual problem, explain it in plain language, and fix it myself, rather than handing over a checklist of vague recommendations.",
   },
   {
     number: '03',
     title: 'Small-business sites & tools',
-    body: "Custom web work for service-based businesses that need to look and function like they mean it — no templates, no bloated CMS you'll fight with later.",
+    body: "Custom web work for service-based businesses that need to look and function like they mean it. Built clean, without templates or a bloated CMS to fight with later.",
   },
   {
     number: '04',
     title: 'Ongoing technical partner',
-    body: "For businesses that need a technical person on call, not a one-off project — someone who already knows the system when the next thing comes up.",
+    body: "Ongoing technical support for businesses that don't want to start from scratch every time something comes up: I already know the system, so the next fix or feature moves faster.",
   },
 ]

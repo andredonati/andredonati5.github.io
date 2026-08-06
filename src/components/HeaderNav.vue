@@ -25,7 +25,7 @@ function closeMenu() {
         <span class="wordmark-sub">Donati Designs</span>
       </RouterLink>
 
-      <nav class="nav-links desktop-only">
+      <nav class="nav-links desktop-only" aria-label="Primary">
         <RouterLink v-for="link in links" :key="link.to" :to="link.to" class="nav-link">
           {{ link.label }}
         </RouterLink>
@@ -41,11 +41,11 @@ function closeMenu() {
       </button>
     </div>
 
-    <div class="mobile-menu" :class="{ open: menuOpen }">
+    <div class="mobile-menu" :class="{ open: menuOpen }" :inert="!menuOpen">
       <button class="close-button" aria-label="Close navigation menu" @click="closeMenu">
         &times;
       </button>
-      <nav class="mobile-nav">
+      <nav class="mobile-nav" aria-label="Mobile" :aria-hidden="!menuOpen">
         <RouterLink
           v-for="link in links"
           :key="link.to"

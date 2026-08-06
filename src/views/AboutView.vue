@@ -7,7 +7,13 @@ import { RouterLink } from 'vue-router'
     <span class="kicker">// 02 — how it started</span>
 
     <div class="about-header">
-      <img src="@/assets/images/headshot.JPG" alt="Andrea Donati" class="headshot" />
+      <img
+        src="@/assets/images/headshot.JPG"
+        alt="Andrea Donati"
+        class="headshot"
+        width="144"
+        height="176"
+      />
       <h1>About</h1>
     </div>
 
@@ -27,11 +33,11 @@ import { RouterLink } from 'vue-router'
       </p>
       <p>
         The small-business work grew directly out of that, not alongside it. The same discipline
-        that goes into architecting a platform for a Fortune 500 client — clear requirements,
-        honest scoping, code that holds up after I've moved on — is exactly what a small business
+        that goes into architecting a platform for a Fortune 500 client (clear requirements,
+        honest scoping, code that holds up after I've moved on) is exactly what a small business
         needs from whoever builds or fixes their site or tools. I do this work because I enjoy the
-        craft, and because that craft transfers directly, not because I'm running a separate
-        "creative studio" identity on the side.
+        craft, and because the same skills apply whether the client is a Fortune 500 enterprise or
+        a five-person shop down the street.
       </p>
 
       <blockquote class="pull-quote">
@@ -47,8 +53,9 @@ import { RouterLink } from 'vue-router'
         isn't technical, or walking a hiring manager through an architecture decision.
       </p>
       <p>
-        If you need something built, fixed, or shipped — a site, a tool, a technical problem
-        solved — that's the person you'd be working with.
+        Whether the project is enterprise-scale or a single small business's site, the same
+        person shows up: someone who treats the problem as worth solving properly, start to
+        finish.
       </p>
     </div>
 

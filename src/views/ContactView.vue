@@ -26,8 +26,8 @@ const emailLooksValid = computed(() => !email.value || /\S+@\S+\.\S+/.test(email
     <h1>Contact</h1>
     <p class="qualifying-line">
       After you fill out the form below, I'll review if I am the right person to bring your
-      project to life. If it feels aligned, we'll hop on a call to learn more about your goals,
-      problems, and how we can provide the most value to you and your business.
+      project to life. If it feels aligned, we'll hop on a call to talk through the technical
+      problem, the timeline, and whether I'm the right fit to take it on.
     </p>
 
     <div v-if="formSubmitted" class="confirmation">

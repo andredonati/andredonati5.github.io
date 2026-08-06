@@ -29,7 +29,7 @@ const featured = capabilities.slice(0, 3)
     <div class="home-page">
       <section class="hero wrap">
         <h1 class="hero-heading">
-          Engineer first. I build the systems — and the sites — that ship.
+          Engineer first: I build the systems and the sites that ship.
         </h1>
         <p class="hero-subtext">
           I've architected and shipped enterprise platforms solo, led Android development for
@@ -48,7 +48,7 @@ const featured = capabilities.slice(0, 3)
           12-month target
         </p>
         <p class="proof-line">
-          <span class="proof-company">Credera</span> — Android lead for Fortune 500 clients
+          <span class="proof-company">Credera</span>: Android lead for Fortune 500 clients
           (Mercedes-Benz, NRG Energy)
         </p>
       </section>
@@ -56,16 +56,16 @@ const featured = capabilities.slice(0, 3)
       <hr class="hr-warm wrap" />
 
       <section class="wrap about-preview">
-        <span class="kicker">// 01 — who I am</span>
+        <h2 class="kicker">// 01 — who I am</h2>
         <p>
           A software engineer first, whose applied specialty happens to include small-business web
-          and technical work — not two identities, one engineer whose craft transfers directly.
+          and technical work: one engineer whose craft transfers directly across both worlds.
         </p>
         <RouterLink to="/about" class="text-link">More about me →</RouterLink>
       </section>
 
       <section class="wrap capability-preview">
-        <span class="kicker">// 02 — what I do</span>
+        <h2 class="kicker">// 02 — what I do</h2>
         <ol class="capability-list">
           <li v-for="item in featured" :key="item.number" class="capability-entry">
             <span class="capability-number">{{ item.number }}</span>

@@ -23,7 +23,7 @@ import { workHistory, skillGroups, stats } from '@/data/content'
 
     <section class="dark-band">
       <div class="wrap">
-        <span class="kicker kicker-dark">// work history</span>
+        <h2 class="kicker kicker-dark">// work history</h2>
         <ul class="history-list">
           <li v-for="row in workHistory" :key="row.role + row.dateRange" class="history-row">
             <span class="history-date">{{ row.dateRange }}</span>
@@ -38,7 +38,7 @@ import { workHistory, skillGroups, stats } from '@/data/content'
     </section>
 
     <div class="wrap skills-block">
-      <span class="kicker">// skills</span>
+      <h2 class="kicker">// skills</h2>
       <div class="skill-groups">
         <div v-for="group in skillGroups" :key="group.label" class="skill-group">
           <h3>{{ group.label }}</h3>

@@ -9,9 +9,9 @@ import { capabilities } from '@/data/content'
     <span class="kicker">// 01 — what I take on</span>
     <h1>Work</h1>
     <p class="intro">
-      You need something built, fixed, or shipped — a site, a tool, a technical problem solved.
-      Here's what that looks like, framed the way I'd actually describe it, not sorted into a
-      package to pick from.
+      Below is the kind of work I take on, described in plain terms rather than sorted into a
+      package to pick from: sites that need building, systems that need fixing, technical problems
+      that need solving, handled end to end.
     </p>
 
     <ol class="capability-list">
