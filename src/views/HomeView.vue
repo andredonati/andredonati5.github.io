@@ -23,70 +23,72 @@ const featured = capabilities.slice(0, 3)
 </script>
 
 <template>
-  <TypewriterIntro v-if="showIntro" @complete="onIntroComplete" />
+  <div class="home-view-root">
+    <TypewriterIntro v-if="showIntro" @complete="onIntroComplete" />
 
-  <div class="home-page">
-    <section class="hero wrap">
-      <h1 class="hero-heading">
-        Engineer first. I build the systems — and the sites — that ship.
-      </h1>
-      <p class="hero-subtext">
-        I've architected and shipped enterprise platforms solo, led Android development for
-        Fortune 500 clients, and bring that same rigor to small businesses who need something
-        built, fixed, or finished.
-      </p>
-      <div class="hero-ctas">
-        <RouterLink to="/contact" class="btn btn-primary">Something to build or fix</RouterLink>
-        <RouterLink to="/experience" class="btn btn-outline">Evaluating me professionally</RouterLink>
-      </div>
-    </section>
+    <div class="home-page">
+      <section class="hero wrap">
+        <h1 class="hero-heading">
+          Engineer first. I build the systems — and the sites — that ship.
+        </h1>
+        <p class="hero-subtext">
+          I've architected and shipped enterprise platforms solo, led Android development for
+          Fortune 500 clients, and bring that same rigor to small businesses who need something
+          built, fixed, or finished.
+        </p>
+        <div class="hero-ctas">
+          <RouterLink to="/contact" class="btn btn-primary">Something to build or fix</RouterLink>
+          <RouterLink to="/experience" class="btn btn-outline">Evaluating me professionally</RouterLink>
+        </div>
+      </section>
 
-    <section class="wrap proof-strip">
-      <p class="proof-line">
-        <span class="proof-company">TBWA</span> — solo platform rebuild, 8 months against a
-        12-month target
-      </p>
-      <p class="proof-line">
-        <span class="proof-company">Credera</span> — Android lead for Fortune 500 clients
-        (Mercedes-Benz, NRG Energy)
-      </p>
-    </section>
+      <section class="wrap proof-strip">
+        <p class="proof-line">
+          <span class="proof-company">TBWA</span> — solo platform rebuild, 8 months against a
+          12-month target
+        </p>
+        <p class="proof-line">
+          <span class="proof-company">Credera</span> — Android lead for Fortune 500 clients
+          (Mercedes-Benz, NRG Energy)
+        </p>
+      </section>
 
-    <hr class="hr-warm wrap" />
+      <hr class="hr-warm wrap" />
 
-    <section class="wrap about-preview">
-      <span class="kicker">// 01 — who I am</span>
-      <p>
-        A software engineer first, whose applied specialty happens to include small-business web
-        and technical work — not two identities, one engineer whose craft transfers directly.
-      </p>
-      <RouterLink to="/about" class="text-link">More about me →</RouterLink>
-    </section>
+      <section class="wrap about-preview">
+        <span class="kicker">// 01 — who I am</span>
+        <p>
+          A software engineer first, whose applied specialty happens to include small-business web
+          and technical work — not two identities, one engineer whose craft transfers directly.
+        </p>
+        <RouterLink to="/about" class="text-link">More about me →</RouterLink>
+      </section>
 
-    <section class="wrap capability-preview">
-      <span class="kicker">// 02 — what I do</span>
-      <ol class="capability-list">
-        <li v-for="item in featured" :key="item.number" class="capability-entry">
-          <span class="capability-number">{{ item.number }}</span>
-          <div>
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.body }}</p>
-          </div>
-        </li>
-      </ol>
-      <RouterLink to="/work" class="text-link">See the full list →</RouterLink>
-    </section>
+      <section class="wrap capability-preview">
+        <span class="kicker">// 02 — what I do</span>
+        <ol class="capability-list">
+          <li v-for="item in featured" :key="item.number" class="capability-entry">
+            <span class="capability-number">{{ item.number }}</span>
+            <div>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.body }}</p>
+            </div>
+          </li>
+        </ol>
+        <RouterLink to="/work" class="text-link">See the full list →</RouterLink>
+      </section>
 
-    <hr class="hr wrap" />
+      <hr class="hr wrap" />
 
-    <section class="wrap">
-      <ClientLogoWall variant="light" />
-    </section>
+      <section class="wrap">
+        <ClientLogoWall variant="light" />
+      </section>
 
-    <section class="wrap final-cta">
-      <h2>Have something to build?</h2>
-      <RouterLink to="/contact" class="btn btn-primary">Start a conversation</RouterLink>
-    </section>
+      <section class="wrap final-cta">
+        <h2>Have something to build?</h2>
+        <RouterLink to="/contact" class="btn btn-primary">Start a conversation</RouterLink>
+      </section>
+    </div>
   </div>
 </template>
 
