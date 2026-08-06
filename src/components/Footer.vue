@@ -1,81 +1,104 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+
+defineOptions({ name: 'SiteFooter' })
+
+const links = [
+  { to: '/about', label: 'About' },
+  { to: '/work', label: 'Work' },
+  { to: '/experience', label: 'Experience' },
+  { to: '/contact', label: 'Contact' },
+]
+</script>
+
 <template>
   <footer class="footer-wrapper">
-    <!-- Decorative Top Wave -->
-    <div class="footer-wave">
-      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="footer-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#8ec5fc" stop-opacity="1" />
-            <stop offset="100%" stop-color="var(--vt-c-indigo)" />
-          </linearGradient>
-        </defs>
-        <path d="M0,0 C480,80 960,20 1440,60 L1440,100 L0,100 Z" fill="url(#footer-fade)" />
-      </svg>
-    </div>
+    <div class="wrap footer-content">
+      <div class="footer-top">
+        <div>
+          <p class="footer-name">Andrea Donati</p>
+          <p class="footer-sub">Small-business web &amp; technical work under Donati Designs</p>
+        </div>
+        <nav class="footer-links">
+          <RouterLink v-for="link in links" :key="link.to" :to="link.to" class="footer-link">
+            {{ link.label }}
+          </RouterLink>
+        </nav>
+      </div>
 
-    <!-- Footer Content -->
-    <div class="footer-content">
-      <p class="footer-text">
-        © {{ new Date().getFullYear() }} Donati Designs. All rights reserved.
-      </p>
-      <div class="footer-links">
-        <RouterLink to="/about" class="footer-link">About</RouterLink>
-        <RouterLink to="/services" class="footer-link">Services</RouterLink>
-        <RouterLink to="/contact" class="footer-link">Work with Me</RouterLink>
+      <hr class="hr" />
+
+      <div class="footer-bottom">
+        <p class="footer-text">© {{ new Date().getFullYear() }} Andrea Donati.</p>
+        <p class="footer-contact">andydonati55@gmail.com</p>
       </div>
     </div>
   </footer>
 </template>
 
-<script setup>
-import { RouterLink } from 'vue-router'
-</script>
-
 <style scoped>
 .footer-wrapper {
-  background-color: var(--vt-c-indigo);
-  color: white;
-  position: relative;
-  text-align: center;
-  padding-top: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 3rem 0 2rem;
 }
 
-.footer-wave svg {
-  display: block;
-  width: 100%;
-  height: 100px;
-  margin-bottom: -1px;
+.footer-content .hr {
+  border-top-color: rgba(250, 249, 246, 0.16);
+  margin: 2rem 0 1.5rem;
 }
 
-.footer-content {
-  padding: 2rem 1rem;
+.footer-top {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
-.footer-text {
+.footer-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.footer-sub {
+  font-family: var(--font-brasika);
   font-size: 0.9rem;
+  color: var(--paper-mute);
+  margin-top: 0.35rem;
   opacity: 0.8;
 }
 
 .footer-links {
   display: flex;
-  gap: 1.5rem;
   flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
 }
 
 .footer-link {
-  color: white;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--paper);
   text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  transition: opacity 0.3s ease;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
-.footer-link:hover {
+.footer-link:hover,
+.footer-link:focus-visible {
+  border-color: var(--warm-accent);
+  color: var(--warm-accent);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--paper-mute);
   opacity: 0.75;
-  text-decoration: underline;
 }
 </style>

@@ -1,163 +1,103 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+</script>
+
 <template>
-  <section class="hero-section">
-    <div class="hero-wrapper">
-      <!-- Left Image -->
-      <div class="hero-image">
-        <img src="/src/assets/images/headshot.JPG" alt="Profile image" />
-      </div>
+  <div class="about-page wrap">
+    <span class="kicker">// 02 — how it started</span>
 
-      <!-- Right Text + Line -->
-      <div class="hero-text-wrapper">
-        <div class="vertical-line"></div>
-
-        <!-- Text Content -->
-        <div class="hero-text">
-          <p class="hero-intro">Hi there</p>
-          <h1 class="hero-name">I'm Andrea</h1>
-          <p class="hero-bio">
-            A software engineer who builds
-            <span class="highlight-italic">functional</span> and
-            <span class="highlight-italic">beautiful</span> digital experiences.<br />
-            My journey started in product, but I shifted to consulting to work more directly with
-            clients—and I’ve never looked back.<br />
-            I’ve led development teams for Fortune 500 companies, but my true passion lies in
-            partnering with
-            <span class="highlight-bold highlight-color">small and mid-sized businesses</span
-            >.<br />
-            Are you ready to bring your vision to life through
-            <span class="highlight-italic">thoughtful, strategic technology</span>?
-          </p>
-          <RouterLink to="/contact" class="hero-button">Work with Me</RouterLink>
-        </div>
-      </div>
+    <div class="about-header">
+      <img src="@/assets/images/headshot.JPG" alt="Andrea Donati" class="headshot" />
+      <h1>About</h1>
     </div>
-  </section>
+
+    <div class="narrative">
+      <p>
+        I'm a software engineer. That's the whole starting point — not "engineer who also does
+        design," not two identities stapled together, just one person whose applied specialty
+        happens to include small-business web and technical work.
+      </p>
+      <p>
+        My career has been built on real, enterprise-scale engineering: architecting and shipping
+        a full platform rebuild solo at TBWA — Next.js, React, Node.js, AWS infrastructure, and
+        the architecture decisions that let it scale across two platforms — in 8 months against a
+        12-month target. Before that, I led Android development at Credera for Fortune 500
+        clients, running a team of 4 to 100% on-time delivery while shipping directly on products
+        used by millions.
+      </p>
+      <p>
+        The small-business work grew directly out of that, not alongside it. The same discipline
+        that goes into architecting a platform for a Fortune 500 client — clear requirements,
+        honest scoping, code that holds up after I've moved on — is exactly what a small business
+        needs from whoever builds or fixes their site or tools. I do this work because I enjoy the
+        craft, and because that craft transfers directly, not because I'm running a separate
+        "creative studio" identity on the side.
+      </p>
+
+      <blockquote class="pull-quote">
+        "One of my values is how I'm great at transforming difficult tech concepts into real
+        world language, and I'm really personable. My soft skills are crucial to my value add as
+        an engineer."
+      </blockquote>
+
+      <p>
+        Translating hard technical work into language people can actually act on, and being
+        straightforward and easy to work with while I do it, isn't a soft aside — it's part of how
+        I operate as an engineer, whether that's explaining a scoping tradeoff to a client who
+        isn't technical, or walking a hiring manager through an architecture decision.
+      </p>
+      <p>
+        If you need something built, fixed, or shipped — a site, a tool, a technical problem
+        solved — that's the person you'd be working with.
+      </p>
+    </div>
+
+    <RouterLink to="/work" class="text-link">See what I take on →</RouterLink>
+  </div>
 </template>
 
 <style scoped>
-.hero-section {
-  background: linear-gradient(to right, #e0c3fc, #8ec5fc); /* soft purple to lavender blue */
-  padding: 80px 20px;
-  display: flex;
-  justify-content: center;
+.about-page {
+  padding: 3rem 1.5rem 5rem;
 }
 
-.hero-wrapper {
+.about-header {
   display: flex;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  width: 100%;
-  gap: 60px;
   align-items: center;
-  padding: 0 20px;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
 }
 
-.hero-image {
-  flex: 1 1 400px;
-  max-width: 500px;
+.about-header h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
 }
 
-.hero-image img {
-  width: 100%;
-  height: auto;
+.headshot {
+  width: 9rem;
+  height: 11rem;
   object-fit: cover;
-  border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-warm);
 }
 
-.hero-text-wrapper {
-  display: flex;
-  flex: 1 1 400px;
-  align-items: flex-start;
-  gap: 30px;
-}
-
-.vertical-line {
-  width: 2px;
-  background: linear-gradient(to bottom, var(--vt-c-indigo), var(--vt-c-purple));
-  flex-shrink: 0;
-  height: 100%;
-  opacity: 0.6;
-}
-
-.hero-text {
+.narrative {
+  max-width: 65ch;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  font-family: Garamond, serif;
-  color: var(--vt-c-black);
+  gap: 1.5rem;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
 }
 
-.hero-intro {
-  font-size: 1rem;
-  color: var(--vt-c-indigo);
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-.hero-name {
-  font-family: 'Brasika', Garamond, serif;
-  font-size: 2.5rem;
-  color: var(--vt-c-purple);
-  margin-bottom: 1rem;
-}
-
-.hero-bio {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  max-width: 60ch;
-  color: var(--vt-c-black-soft);
-}
-
-.hero-button {
-  background: var(--vt-c-indigo);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-
-.hero-button:hover {
-  background: var(--vt-c-purple);
-}
-
-.highlight-bold {
+.pull-quote {
+  font-family: var(--font-display);
   font-weight: 700;
-  color: var(--vt-c-purple);
-}
-
-.highlight-italic {
-  font-style: italic;
-  font-weight: 700;
-  color: var(--vt-c-indigo);
-}
-
-@media (max-width: 768px) {
-  .hero-wrapper {
-    flex-direction: column;
-    padding: 0 16px;
-  }
-
-  .hero-text-wrapper {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .vertical-line {
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(to right, var(--vt-c-indigo), var(--vt-c-purple));
-  }
-
-  .hero-name {
-    font-size: 2rem;
-  }
-
-  .hero-bio {
-    font-size: 1rem;
-  }
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  line-height: 1.4;
+  color: var(--ink);
+  border-left: 3px solid var(--indigo);
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  margin: 1rem 0;
 }
 </style>

@@ -1,207 +1,200 @@
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
+import TypewriterIntro from '@/components/TypewriterIntro.vue'
+import ClientLogoWall from '@/components/ClientLogoWall.vue'
+import { capabilities } from '@/data/content'
+
+const INTRO_FLAG = 'introPlayed'
+const showIntro = ref(false)
+
+onMounted(() => {
+  if (!sessionStorage.getItem(INTRO_FLAG)) {
+    showIntro.value = true
+  }
+})
+
+function onIntroComplete() {
+  sessionStorage.setItem(INTRO_FLAG, '1')
+  showIntro.value = false
+}
+
+const featured = capabilities.slice(0, 3)
+</script>
+
 <template>
+  <TypewriterIntro v-if="showIntro" @complete="onIntroComplete" />
+
   <div class="home-page">
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-text">
-        <h1 class="hero-heading">Design that works as hard as you do</h1>
-
-        <p class="hero-subtext">
-          For service-based businesses ready to stand out online and grow with confidence.
-        </p>
-        <RouterLink to="/contact" class="hero-button">Let’s Work Together</RouterLink>
+    <section class="hero wrap">
+      <h1 class="hero-heading">
+        Engineer first. I build the systems — and the sites — that ship.
+      </h1>
+      <p class="hero-subtext">
+        I've architected and shipped enterprise platforms solo, led Android development for
+        Fortune 500 clients, and bring that same rigor to small businesses who need something
+        built, fixed, or finished.
+      </p>
+      <div class="hero-ctas">
+        <RouterLink to="/contact" class="btn btn-primary">Something to build or fix</RouterLink>
+        <RouterLink to="/experience" class="btn btn-outline">Evaluating me professionally</RouterLink>
       </div>
     </section>
 
-    <!-- Decorative Divider Icon -->
-    <div class="divider-icon">⁂</div>
+    <section class="wrap proof-strip">
+      <p class="proof-line">
+        <span class="proof-company">TBWA</span> — solo platform rebuild, 8 months against a
+        12-month target
+      </p>
+      <p class="proof-line">
+        <span class="proof-company">Credera</span> — Android lead for Fortune 500 clients
+        (Mercedes-Benz, NRG Energy)
+      </p>
+    </section>
 
-    <!-- About Preview Section -->
-    <section class="about-preview section-muted">
-      <h2>Meet Andrea</h2>
+    <hr class="hr-warm wrap" />
+
+    <section class="wrap about-preview">
+      <span class="kicker">// 01 — who I am</span>
       <p>
-        A software engineer turned creative partner for small businesses. With experience leading
-        development teams for Fortune 500 companies, Andrea now brings big-agency thinking to
-        growing brands who want more than just a pretty website.
+        A software engineer first, whose applied specialty happens to include small-business web
+        and technical work — not two identities, one engineer whose craft transfers directly.
       </p>
-      <RouterLink to="/about" class="link">More About Me →</RouterLink>
+      <RouterLink to="/about" class="text-link">More about me →</RouterLink>
     </section>
 
-    <!-- Gradient Divider Line -->
-    <div class="gradient-break"></div>
-
-    <!-- Featured Services Section -->
-    <section class="featured-services">
-      <h2>What I Offer</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <img
-            src="/src/assets/images/brand-strategy.jpeg"
-            alt="Moodboard showing branding strategy concept"
-          />
-          <h3>Brand Strategy</h3>
-          <p>
-            Align your business mission, messaging, and visuals into a cohesive brand experience
-            that stands out.
-          </p>
-          <RouterLink :to="{ path: '/services', hash: '#brand-strategy' }" class="link">
-            Explore Brand Strategy →
-          </RouterLink>
-        </div>
-        <div class="service-card">
-          <img
-            src="/src/assets/images/web-design.jpeg"
-            alt="Modern website design on desktop and mobile devices"
-          />
-          <h3>Web Design</h3>
-          <p>
-            Strategic, custom web design focused on conversions, performance, and bringing your
-            vision to life.
-          </p>
-          <RouterLink :to="{ path: '/services', hash: '#web-design' }" class="link">
-            Explore Web Design →
-          </RouterLink>
-        </div>
-        <div class="service-card">
-          <img
-            src="/src/assets/images/Donati Designs.png"
-            alt="Donati Designs logo on brown background with laptop in view"
-          />
-          <h3>A La Carte</h3>
-          <p>
-            Need just one piece? Choose targeted services like SEO, analytics, or digital templates.
-          </p>
-          <RouterLink :to="{ path: '/services', hash: '#custom-services' }" class="link">
-            Learn More →
-          </RouterLink>
-        </div>
-      </div>
+    <section class="wrap capability-preview">
+      <span class="kicker">// 02 — what I do</span>
+      <ol class="capability-list">
+        <li v-for="item in featured" :key="item.number" class="capability-entry">
+          <span class="capability-number">{{ item.number }}</span>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </div>
+        </li>
+      </ol>
+      <RouterLink to="/work" class="text-link">See the full list →</RouterLink>
     </section>
 
-    <!-- Decorative Divider -->
-    <div class="divider-icon">⁂</div>
+    <hr class="hr wrap" />
 
-    <!-- Final Call to Action -->
-    <section class="final-cta section-muted">
-      <h2>Let’s make something beautiful</h2>
-      <p style="margin-bottom: 30px">
-        Whether you’re launching something new or leveling up your online presence, I’d love to hear
-        from you.
-      </p>
-      <RouterLink to="/contact" class="hero-button">Start Your Project</RouterLink>
+    <section class="wrap">
+      <ClientLogoWall variant="light" />
+    </section>
+
+    <section class="wrap final-cta">
+      <h2>Have something to build?</h2>
+      <RouterLink to="/contact" class="btn btn-primary">Start a conversation</RouterLink>
     </section>
   </div>
 </template>
 
-<script setup>
-import { RouterLink } from 'vue-router'
-</script>
-
 <style scoped>
 .home-page {
-  background: linear-gradient(to left, #e0c3fc, #8ec5fc);
-  color: var(--vt-c-black);
+  color: var(--ink);
 }
 
 .hero {
-  text-align: center;
-  padding: 8rem 2rem 6rem;
-  max-width: 800px;
+  padding: 5rem 1.5rem 3rem;
+  max-width: 46rem;
   margin: 0 auto;
 }
+
 .hero-heading {
-  font-family: 'Brasika', Garamond, serif;
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: var(--vt-c-indigo);
+  font-size: clamp(2.1rem, 5vw, 3.25rem);
+  margin-bottom: 1.25rem;
 }
+
 .hero-subtext {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--mono-accent);
+  margin-bottom: 2.25rem;
+  max-width: 42rem;
 }
-.hero-button {
-  background-color: var(--vt-c-indigo);
-  color: white;
-  padding: 12px 28px;
-  border-radius: 30px;
-  font-size: 1rem;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-.hero-button:hover {
-  background-color: var(--vt-c-purple);
+
+.proof-strip {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.proof-line {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: var(--mono-accent);
+}
+
+.proof-company {
+  color: var(--ink);
+  font-weight: 500;
 }
 
 .about-preview,
+.capability-preview {
+  padding: 3.5rem 1.5rem;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.about-preview p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.capability-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.capability-entry {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.capability-number {
+  font-family: var(--font-mono);
+  color: var(--indigo);
+  font-size: 0.95rem;
+  padding-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.capability-entry h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.capability-entry p {
+  color: var(--mono-accent);
+  line-height: 1.65;
+}
+
 .final-cta {
   text-align: center;
-  padding: 5rem 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.about-preview h2,
-.final-cta h2,
-.featured-services h2 {
-  font-family: 'Brasika', Garamond, serif;
-  font-size: 2rem;
-  color: var(--vt-c-indigo);
-  margin-bottom: 1rem;
-}
-.link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--vt-c-indigo);
-  text-decoration: none;
-  font-weight: 600;
-}
-.link:hover {
-  color: var(--vt-c-purple);
+  padding: 4rem 1.5rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.featured-services {
-  padding: 5rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-}
-.service-card {
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-.service-card:hover {
-  transform: translateY(-8px);
-}
-.service-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-}
-
-.divider-icon {
-  text-align: center;
-  font-size: 2rem;
-  color: var(--vt-c-purple);
-  margin: 3rem 0;
-}
-
-.gradient-break {
-  height: 20px;
-  background: linear-gradient(to right, #e0c3fc, #8ec5fc);
-  opacity: 0.4;
-}
-
-.section-muted {
-  background: rgba(255, 255, 255, 0.1);
+.final-cta h2 {
+  font-size: 1.9rem;
 }
 </style>

@@ -1,88 +1,116 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
+
+const menuOpen = ref(false)
+
+const links = [
+  { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
+  { to: '/work', label: 'Work' },
+  { to: '/experience', label: 'Experience' },
+  { to: '/contact', label: 'Contact' },
+]
+
+function closeMenu() {
+  menuOpen.value = false
+}
+</script>
+
 <template>
   <header class="header-wrapper">
-    <div class="header-content">
-      <!-- Mobile Hamburger -->
-      <button class="menu-button" @click="menuOpen = true">&#9776;</button>
+    <div class="header-content wrap">
+      <RouterLink to="/" class="wordmark" @click="closeMenu">
+        <span class="wordmark-primary">Andrea Donati</span>
+        <span class="wordmark-sub">Donati Designs</span>
+      </RouterLink>
 
-      <!-- Centered Logo -->
-      <RouterLink to="/" class="logo">Donati Designs</RouterLink>
-
-      <!-- Desktop Nav: All links grouped -->
       <nav class="nav-links desktop-only">
-        <RouterLink to="/" class="nav-link">Home</RouterLink>
-        <RouterLink to="/about" class="nav-link">About</RouterLink>
-        <RouterLink to="/services" class="nav-link">Services</RouterLink>
-        <RouterLink to="/contact" class="nav-link">Work with Me</RouterLink>
+        <RouterLink v-for="link in links" :key="link.to" :to="link.to" class="nav-link">
+          {{ link.label }}
+        </RouterLink>
       </nav>
+
+      <button
+        class="menu-button"
+        :aria-expanded="menuOpen"
+        aria-label="Toggle navigation menu"
+        @click="menuOpen = true"
+      >
+        &#9776;
+      </button>
     </div>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" :class="{ open: menuOpen }">
-      <button class="close-button" @click="menuOpen = false">&times;</button>
+      <button class="close-button" aria-label="Close navigation menu" @click="closeMenu">
+        &times;
+      </button>
       <nav class="mobile-nav">
-        <RouterLink to="/about" class="nav-link" @click="menuOpen = false">About</RouterLink>
-        <RouterLink to="/services" class="nav-link" @click="menuOpen = false">Services</RouterLink>
-        <RouterLink to="/contact" class="nav-link" @click="menuOpen = false"
-          >Work with Me</RouterLink
+        <RouterLink
+          v-for="link in links"
+          :key="link.to"
+          :to="link.to"
+          class="nav-link"
+          @click="closeMenu"
         >
+          {{ link.label }}
+        </RouterLink>
       </nav>
-    </div>
-
-    <!-- Wave Divider -->
-    <div class="header-wave">
-      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="header-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="var(--vt-c-indigo)" />
-            <stop offset="100%" stop-color="#8ec5fc" stop-opacity="0.9" />
-          </linearGradient>
-        </defs>
-        <path d="M0,40 C480,100 960,0 1440,60 L1440,100 L0,100 Z" fill="url(#header-fade)" />
-      </svg>
     </div>
   </header>
 </template>
 
-<script>
-import { RouterLink } from 'vue-router'
-
-export default {
-  name: 'HeaderNav',
-  data() {
-    return {
-      menuOpen: false,
-    }
-  },
-}
-</script>
-
 <style scoped>
 .header-wrapper {
-  background-color: var(--vt-c-indigo);
+  background-color: var(--paper);
   width: 100%;
   position: fixed;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: 900;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+/* A hairline appears once there's content to scroll past — approximated with a
+   persistent low-opacity line so it reads consistently without JS scroll tracking. */
+.header-wrapper::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 1px solid var(--line);
 }
 
 .header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
 }
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: white;
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
   text-decoration: none;
-  font-family: 'Brasika', serif;
+  color: var(--ink);
+}
+
+.wordmark-primary {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+}
+
+.wordmark-sub {
+  font-family: var(--font-brasika);
+  font-size: 0.8rem;
+  color: var(--mono-accent);
+  margin-top: 0.15rem;
 }
 
 .nav-links {
@@ -92,16 +120,23 @@ export default {
 }
 
 .nav-link {
-  color: var(--vt-c-white);
+  color: var(--ink);
   text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: color 0.2s;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  position: relative;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
 }
 
-.nav-link:hover {
-  text-underline-offset: 8px; /* adjust value as needed */
-  text-decoration: underline;
+.nav-link:hover,
+.nav-link:focus-visible {
+  border-color: var(--warm-accent);
+}
+
+.nav-link.router-link-exact-active {
+  border-color: var(--indigo);
 }
 
 .menu-button {
@@ -109,47 +144,52 @@ export default {
   font-size: 1.5rem;
   background: none;
   border: none;
-  color: white;
+  color: var(--ink);
   cursor: pointer;
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
 }
 
 .mobile-menu {
   position: fixed;
-  top: 0;
-  left: -100%;
-  width: 250px;
-  height: 100%;
-  background-color: var(--vt-c-indigo);
-  color: white;
+  inset: 0;
+  background: var(--paper);
   padding: 2rem 1.5rem;
-  transition: left 0.3s ease;
-  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 950;
+  border-radius: var(--radius-warm) 0 0 var(--radius-warm);
 }
 
 .mobile-menu.open {
-  left: 0;
+  transform: translateX(0);
 }
 
 .close-button {
   background: none;
   border: none;
   font-size: 2rem;
-  color: white;
+  color: var(--ink);
   cursor: pointer;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .mobile-nav {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+.mobile-nav .nav-link {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  border: none;
+}
+
+.mobile-nav .nav-link.router-link-exact-active {
+  color: var(--indigo);
+}
+
+@media (max-width: 780px) {
   .nav-links {
     display: none;
   }
@@ -157,22 +197,5 @@ export default {
   .menu-button {
     display: block;
   }
-
-  .logo {
-    margin: 0 auto;
-  }
-}
-
-.header-wave {
-  width: 100%;
-  line-height: 0;
-  position: relative;
-  margin-top: -5px;
-}
-
-.header-wave svg {
-  display: block;
-  width: 100%;
-  height: 100px;
 }
 </style>

@@ -1,44 +1,42 @@
+/* Design tokens — technical-editorial direction, per pipeline/design-spec.md v3 */
 :root {
-  /* White variants — keep as-is */
-  --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+  /* Ink / paper base */
+  --ink: #14121a;
+  --paper: #faf9f6;
+  --paper-mute: #f0eee8;
 
-  /* Black variants — keep as-is */
-  --vt-c-black: #181818;
-  --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
+  /* Single cool accent, kept from the existing brand */
+  --indigo: #372772;
+  --indigo-deep: #241a4d;
 
-  /* Primary brand color */
-  --vt-c-indigo: #372772; /* deep purple replaces indigo */
-  --vt-c-purple: #3a2440;
+  /* Structural */
+  --line: rgba(20, 18, 26, 0.12);
+  --line-strong: rgba(20, 18, 26, 0.22);
+  --mono-accent: #5a5445;
 
-  /* Divider colors use subtle brand tones */
-  --vt-c-divider-light-1: rgba(128, 152, 72, 0.29); /* olive green tint */
-  --vt-c-divider-light-2: rgba(128, 152, 72, 0.12);
-  --vt-c-divider-dark-1: rgba(58, 36, 64, 0.65); /* dark plum tint */
-  --vt-c-divider-dark-2: rgba(58, 36, 64, 0.48);
+  /* Warm accent — interactive/human moments only (hover, focus, cursor) */
+  --warm-accent: #71863d;
+  --warm-accent-deep: #566530;
 
-  /* Text colors */
-  --vt-c-text-light-1: #007991; /* teal as primary light text */
-  --vt-c-text-light-2: rgba(128, 152, 72, 0.66); /* olive accent for lighter text */
-  --vt-c-text-dark-1: #98dfea; /* light cyan for dark theme titles */
-  --vt-c-text-dark-2: rgba(152, 223, 234, 0.64); /* light cyan muted */
-}
+  /* Feedback */
+  --error: #a8402b;
 
-/* semantic color variables for this project */
-:root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
+  /* Type */
+  --font-display: 'Space Grotesk', 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-body:
+    'Inter',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  --font-brasika: 'Brasika', Garamond, serif;
 
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
+  /* Radius: sharp for data/technical content, warmer for narrative/human content */
+  --radius-sharp: 4px;
+  --radius-warm: 9px;
 
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-
-  --section-gap: 160px;
+  --content-max: 1180px;
 }
 
 *,
@@ -48,6 +46,7 @@
   margin: 0;
   font-weight: normal;
 }
+
 @font-face {
   font-family: 'Brasika';
   src:
@@ -58,16 +57,17 @@
   font-display: swap;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
-  transition:
-    color 0.5s,
-    background-color 0.5s;
+  color: var(--ink);
+  background: var(--paper);
   line-height: 1.6;
-  font-family: Garamond, serif;
-  font-size: 15px;
+  font-family: var(--font-body);
+  font-size: 16.5px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -79,5 +79,125 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Brasika', Garamond, serif;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Section kicker — monospace structural label, e.g. "// 02 — experience" */
+.kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: var(--mono-accent);
+  margin-bottom: 0.75rem;
+}
+
+/* Hairline rule utility */
+.hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+
+/* Narrative sections get a slightly warmer, rounded-cap rule */
+.hr-warm {
+  border: none;
+  border-top: 1.5px solid var(--line);
+  border-radius: 2px;
+  margin: 0;
+}
+
+.wrap {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Buttons: flat/rectangular-to-minimally-rounded, no drop shadow */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-warm);
+  text-decoration: none;
+  border: 1px solid var(--ink);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--warm-accent);
+  border-color: var(--warm-accent);
+  color: var(--ink);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  border-color: var(--warm-accent);
+  color: var(--warm-accent-deep);
+}
+
+/* Inline text links get a warm-accent underline transition on hover, per Section 1 */
+.text-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+
+.text-link:hover,
+.text-link:focus-visible {
+  color: var(--warm-accent-deep);
+  text-decoration-color: var(--warm-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 2px;
+}
+
+/* Page-level fade transition between routes */
+.route-fade-enter-active,
+.route-fade-leave-active {
+  transition: opacity 0.35s ease;
+}
+.route-fade-enter-from,
+.route-fade-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 720px) {
+  body {
+    font-size: 16px;
+  }
 }

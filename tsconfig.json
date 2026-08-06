@@ -8,7 +8,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"]
+    "noEmit": true,
+    "lib": ["ESNext", "DOM"],
+
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src", "env.d.ts"]
 }

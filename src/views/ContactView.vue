@@ -1,248 +1,227 @@
-<template>
-  <div class="app">
-    <div class="contact">
-      <div class="left">
-        <div class="text-container">
-          <VueWriter
-            v-if="showWriter"
-            :array="['Ready to get started?', 'Let\'s get in touch!']"
-            :iterations="1"
-            :repeat="false"
-            :typeSpeed="100"
-            :caret="cursor"
-            :eraseSpeed="20"
-            @typed="handleTyped"
-            class="vue-typer"
-          />
-          <div v-if="!showWriter" class="vue-typer">
-            {{ finalText }}
-          </div>
-          <p v-if="showParagraph" class="fade-in">
-            After you fill out the form below, I’ll review if I am the right person to bring your
-            project to life. If it feels aligned, we’ll hop on a call to learn more about your
-            goals, problems, and how we can provide the most value to you and your business.
-          </p>
-        </div>
-      </div>
-      <div class="right" v-show="showParagraph" :class="{ 'slide-in': slideInActive }">
-        <div class="right" v-show="showParagraph" :class="{ 'slide-in': slideInActive }">
-          <div class="contact-form">
-            <div v-if="formSubmitted">
-              <h2>Thank you!</h2>
-              <p>Your message has been sent. I'll be in touch soon.</p>
-            </div>
-
-            <form
-              v-else
-              action="https://formspree.io/f/manjwzpn?redirect=/contact?submitted=true"
-              method="POST"
-            >
-              <input type="text" name="firstName" placeholder="First name" required />
-              <input type="text" name="lastName" placeholder="Last name" required />
-              <input type="email" name="email" placeholder="Email address" required />
-
-              <select name="service" required>
-                <option disabled selected value="">Select a service</option>
-                <option value="web design">Web Design</option>
-                <option value="branding">Brand Strategy</option>
-                <option value="seo">A La Carte</option>
-              </select>
-
-              <textarea name="message" placeholder="Your message..." required></textarea>
-
-              <button type="submit">Send</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-import { VueWriter } from 'vue-writer'
-import { ref, onMounted } from 'vue'
+<script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-const route = useRoute()
+type Intent = 'project' | 'professional'
+
+const intent = ref<Intent>('project')
 const formSubmitted = ref(false)
+const emailTouched = ref(false)
+const email = ref('')
+
+const route = useRoute()
 
 onMounted(() => {
   if (route.query.submitted === 'true') {
     formSubmitted.value = true
   }
 })
-export default {
-  name: 'ContactView',
-  components: {
-    VueWriter,
-  },
-  data() {
-    return {
-      showWriter: true,
-      showParagraph: false,
-      typedCount: 0,
-      slideInActive: false,
-    }
-  },
-  methods: {
-    handleTyped(word) {
-      this.typedCount += 1
-      if (this.typedCount === 2) {
-        this.showParagraph = true
-        this.showWriter = false
-        this.finalText = "Let's get in touch!"
-        setTimeout(() => {
-          this.slideInActive = true
-        }, 50)
-      }
-    },
-  },
-}
+
+const emailLooksValid = computed(() => !email.value || /\S+@\S+\.\S+/.test(email.value))
 </script>
 
+<template>
+  <div class="contact-page wrap">
+    <span class="kicker">// 04 — get in touch</span>
+    <h1>Contact</h1>
+    <p class="qualifying-line">
+      After you fill out the form below, I'll review if I am the right person to bring your
+      project to life. If it feels aligned, we'll hop on a call to learn more about your goals,
+      problems, and how we can provide the most value to you and your business.
+    </p>
+
+    <div v-if="formSubmitted" class="confirmation">
+      <h2>Thank you!</h2>
+      <p>Your message has been sent. I'll be in touch soon.</p>
+    </div>
+
+    <form
+      v-else
+      class="contact-form"
+      action="https://formspree.io/f/manjwzpn?redirect=/contact?submitted=true"
+      method="POST"
+    >
+      <div class="toggle" role="tablist" aria-label="What are you reaching out about?">
+        <button
+          type="button"
+          role="tab"
+          :aria-selected="intent === 'project'"
+          class="toggle-option"
+          :class="{ active: intent === 'project' }"
+          @click="intent = 'project'"
+        >
+          Project inquiry
+        </button>
+        <button
+          type="button"
+          role="tab"
+          :aria-selected="intent === 'professional'"
+          class="toggle-option"
+          :class="{ active: intent === 'professional' }"
+          @click="intent = 'professional'"
+        >
+          Professional / career contact
+        </button>
+      </div>
+      <input type="hidden" name="intent" :value="intent" />
+
+      <div class="field-row">
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input id="firstName" type="text" name="firstName" required />
+        </div>
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input id="lastName" type="text" name="lastName" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input
+          id="email"
+          v-model="email"
+          type="email"
+          name="email"
+          required
+          @blur="emailTouched = true"
+        />
+        <p v-if="emailTouched && !emailLooksValid" class="field-error">
+          mind double-checking that email?
+        </p>
+      </div>
+
+      <div v-if="intent === 'project'" class="field">
+        <label for="businessName">Business name</label>
+        <input id="businessName" type="text" name="businessName" />
+      </div>
+      <div v-else class="field-row">
+        <div class="field">
+          <label for="role">Role</label>
+          <input id="role" type="text" name="role" />
+        </div>
+        <div class="field">
+          <label for="company">Company</label>
+          <input id="company" type="text" name="company" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary submit-btn">Send</button>
+    </form>
+  </div>
+</template>
+
 <style scoped>
-.contact {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 4rem 2rem;
-  gap: 3rem;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(to right, #e0c3fc, #8ec5fc);
-  min-height: 600px;
+.contact-page {
+  padding: 3rem 1.5rem 6rem;
+  max-width: 40rem;
 }
 
-.left,
-.right {
-  flex: 1 1 500px;
+.contact-page h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: 1.25rem;
+}
+
+.qualifying-line {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--mono-accent);
+  margin-bottom: 2.5rem;
+}
+
+.confirmation {
+  padding: 2rem 0;
+}
+
+.confirmation h2 {
+  margin-bottom: 0.75rem;
+}
+
+.toggle {
+  display: flex;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-warm);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.toggle-option {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.toggle-option.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.field {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
 }
 
-.text-container {
-  max-width: 700px;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-.vue-typer {
-  font-family: 'Brasika', Garamond, serif;
-  font-size: 3rem;
-  color: var(--vt-c-purple);
-  margin-bottom: 1rem;
-}
-
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 1s ease-in forwards;
-  animation-delay: 0.5s;
-  font-family: Garamond, serif;
-  font-size: 1.1rem;
-  color: var(--vt-c-black-soft);
-  line-height: 1.8;
-  max-width: 60ch;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: 100%;
-  max-width: 500px;
-  background: white;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--mono-accent);
 }
 
 input,
-select,
 textarea {
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0.9rem;
   font-size: 1rem;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  font-family: Garamond, serif;
-  width: 100%;
-  transition: border-color 0.3s ease;
-  margin-bottom: 10px;
+  font-family: var(--font-body);
+  border-radius: var(--radius-sharp);
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+  color: var(--ink);
+  transition: border-color 0.2s ease;
 }
 
 input:focus,
-select:focus,
 textarea:focus {
-  border-color: var(--vt-c-purple);
+  border-color: var(--warm-accent);
   outline: none;
 }
 
 textarea {
-  min-height: 120px;
+  min-height: 130px;
   resize: vertical;
 }
 
-button {
-  background: var(--vt-c-indigo);
-  color: white;
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-family: Garamond, serif;
+.field-error {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--error);
 }
 
-button:hover {
-  background: var(--vt-c-purple);
+.submit-btn {
+  margin-top: 0.5rem;
 }
 
-.right {
-  opacity: 0;
-  transform: translateX(80px);
-  transition: all 1.5s ease-in-out;
-}
-
-.right.slide-in {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.is-typed span.cursor {
-  display: inline-block;
-  width: 3px;
-  background-color: black;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%,
-  49% {
-    background-color: black;
-  }
-  50%,
-  100% {
-    background-color: transparent;
-  }
-}
-
-@media (max-width: 768px) {
-  .contact {
-    flex-direction: column;
-    padding: 2rem 1rem;
-  }
-  .contact-form {
-    padding: 1.5rem;
-  }
-  .vue-typer {
-    font-size: 2.25rem;
+@media (max-width: 560px) {
+  .field-row {
+    grid-template-columns: 1fr;
   }
 }
 </style>
